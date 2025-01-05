@@ -40,7 +40,7 @@ class Item:
         self.upsidedown = upsidedown if type==Type.CUBE else False
         self.color = color
         self.position = START_POSITION
-        self.rotations = RotationType.ALL if rotations is None else rotations
+        self.rotations = self.set_rotations(type, upsidedown, rotations)
         self.stackable = stackable
         self.rotation = RotationType.WHD  # set default rotation type is WHD
 
@@ -56,8 +56,9 @@ class Item:
             self.partno, self.width, self.height, self.depth, self.weight,
             self.position, self.get_volume()
         )
-    
-    def set_rotations(self, type: str, upsidedown: bool, rotations: list[int]):
+
+    @staticmethod
+    def set_rotations(type: str, upsidedown: bool, rotations: list[int]):
         """
         Determines and sets the appropriate rotation types for the item based
         on its type, whether it can be placed upside down, and specified rotations.

@@ -285,13 +285,13 @@ class Packer:
         stackable_counts = Counter(item.group for item in stackable_items)
         unstackable_counts = Counter(item.group for item in unstackable_items)
 
-        # Sort stackable and unstackable items by volume, weight, and the count of their groups
+        # Sort stackable and unstackable items by priority, volume, weight, and the count of their groups
         stackable_items.sort(
-            key=lambda item: (item.get_volume(), item.weight, stackable_counts[item.group]), reverse=bigger_first
+            key=lambda item: (item.priority, item.get_volume(), item.weight, stackable_counts[item.group]), reverse=bigger_first
         )
 
         unstackable_items.sort(
-            key=lambda item: (item.get_volume(), item.weight, unstackable_counts[item.group]), reverse=bigger_first
+            key=lambda item: (item.priority, item.get_volume(), item.weight, unstackable_counts[item.group]), reverse=bigger_first
         )
 
         # Combine sorted lists

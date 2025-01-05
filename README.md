@@ -112,6 +112,7 @@ from py3dbp.packer import Packer
 from py3dbp.item import Item
 from py3dbp.bin import Bin
 from py3dbp.visualizer import Visualizer
+from py3dbp.constants import RotationType, Type
 import time
 
 start = time.time()
@@ -124,11 +125,11 @@ box = Bin('example', (30, 10, 15), 99, 0)
 packer.add_bin(box)
 
 #  add item
-packer.add_item(Item('test1', 'test', Type.CUBE, (9, 8, 7), 1, 1, 100, True, 'red'))
-packer.add_item(Item('test2', 'test', Type.CUBE, (4, 25, 1), 1, 1, 100, True, 'blue'))
-packer.add_item(Item('test3', 'test', Type.CUBE, (2, 13, 5), 1, 1, 100, True, 'gray'))
-packer.add_item(Item('test4', 'test', Type.CYLINDER, (7, 5, 4), 1, 1, 100, True, 'orange'))
-packer.add_item(Item('test5', 'test', Type.CYLINDER, (10, 5, 2), 1, 1, 100, True, 'lawngreen'))
+packer.add_item(Item('test1', 'test', Type.CUBE, (9, 8, 7), 1, 1, 100, True, 'red', rotations=RotationType.ALL))
+packer.add_item(Item('test2', 'test', Type.CUBE, (4, 25, 1), 1, 1, 100, True, 'blue', rotations=[RotationType.WHD, 3]))
+packer.add_item(Item('test3', 'test', Type.CUBE, (2, 13, 5), 1, 1, 100, False, 'gray', rotations=None))
+packer.add_item(Item('test4', 'test', Type.CYLINDER, (7, 5, 4), 1, 1, 100, True, 'orange', rotations=[0, 2, 4]))
+packer.add_item(Item('test5', 'test', Type.CYLINDER, (10, 5, 2), 1, 1, 100, False, 'lawngreen'))
 
 # calculate packing 
 packer.pack(
