@@ -88,7 +88,7 @@ class Packer:
         elif not bin.items:
             if not bin.put_item(new_item, new_item.position):
                 bin.unfitted_items.append(new_item)
-                return
+            return
 
         for axis in Axis.WHD:
             for item in bin.items:
