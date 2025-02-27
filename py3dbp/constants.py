@@ -1,6 +1,3 @@
-from enum import Enum
-
-
 class RotationType:
     WHD = 0
     HWD = 1
